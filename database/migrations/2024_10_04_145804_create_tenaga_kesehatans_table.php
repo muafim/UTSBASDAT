@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('no_telpon', 20);
             $table->string('email', 100);
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->string('role')->default('wali');
             $table->timestamps();
         });
     }

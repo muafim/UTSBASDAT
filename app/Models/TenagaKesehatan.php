@@ -19,6 +19,7 @@ class TenagaKesehatan extends Model
         'no_telpon',
         'email',
         'jenis_kelamin',
+        'role',
     ];
 
     public function jadwalPosyandu()

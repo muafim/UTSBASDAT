@@ -19,8 +19,9 @@
             <aside class="w-64 bg-white p-5 shadow-md">
                 <div class="text-center mb-8">
                     <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto"></div>
-                    <h2 class="text-xl font-semibold mt-4">{{ $wali->nama }}</h2> <!-- Menampilkan nama dari database -->
-                    <p class="text-gray-600">{{ $wali->nik }}<br>Surabaya</p> <!-- Menampilkan NIK -->
+                    <h2 class="text-xl font-semibold mt-4">{{ Auth::user()->nama }}</h2> <!-- Menampilkan nama dari database -->
+                    <p class="text-gray-600">{{ Auth::user()->nik }}</p>
+                    <p class="text-gray-600">{{ Auth::user()->alamat }}
                 </div>
 
                 <nav>
@@ -36,40 +37,32 @@
 
             <div class="flex-1 p-8 bg-gray-100">
                 <h2 class="text-2xl font-semibold mb-6">Profil Wali</h2>
-                <form method="POST" action="{{ route('profil.wali.update') }}">
-                    @csrf
-                    <div class="space-y-4">
-                        <div>
-                            <label class="font-bold" for="name">Nama:</label>
-                            <input type="text" id="name" name="nama" value="{{ $wali->nama }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Nama">
-                        </div>
-                        <div>
-                            <label class="font-bold" for="email">Email:</label>
-                            <input type="email" id="email" name="email" value="{{ $wali->email }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Email">
-                        </div>
-                        <div>
-                            <label class="font-bold" for="address">Alamat:</label>
-                            <input type="text" id="address" name="alamat" value="{{ $wali->alamat }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Alamat">
-                        </div>
-                        <div>
-                            <label class="font-bold" for="gender">Jenis Kelamin:</label>
-                            <select id="gender" name="jenis_kelamin" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300">
-                                <option value="" disabled>Pilih Jenis Kelamin</option>
-                                <option value="Laki-laki" {{ $wali->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                <option value="Perempuan" {{ $wali->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="font-bold" for="nik">NIK:</label>
-                            <input type="text" id="nik" name="nik" value="{{ $wali->nik }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan NIK">
-                        </div>
-                        <div>
-                            <label class="font-bold" for="phone">Nomor Telepon:</label>
-                            <input type="text" id="phone" name="no_telpon" value="{{ $wali->no_telpon }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Nomor Telepon">
-                        </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="font-bold" for="name">Nama:</label>
+                        <input type="text" id="name" value="{{ Auth::user()->nama }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" readonly>
                     </div>
-                    <button type="submit" class="bg-yellow-500 text-white py-3 px-4 rounded hover:bg-yellow-600 transition-all w-full mt-4">Simpan</button>
-                </form>
+                    <div>
+                        <label class="font-bold" for="email">Email:</label>
+                        <input type="email" id="email" value="{{ Auth::user()->email }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" readonly>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="address">Alamat:</label>
+                        <input type="text" id="address" value="{{ Auth::user()->alamat }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" readonly>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="gender">Jenis Kelamin:</label>
+                        <input type="text" id="gender" value="{{ Auth::user()->jenis_kelamin }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" readonly>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="nik">NIK:</label>
+                        <input type="text" id="nik" value="{{ Auth::user()->nik }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" readonly>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="phone">Nomor Telepon:</label>
+                        <input type="text" id="phone" value="{{ Auth::user()->no_telpon }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" readonly>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
