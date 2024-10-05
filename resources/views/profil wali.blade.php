@@ -19,8 +19,8 @@
             <aside class="w-64 bg-white p-5 shadow-md">
                 <div class="text-center mb-8">
                     <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto"></div>
-                    <h2 class="text-xl font-semibold mt-4">NAMA LENGKAP</h2>
-                    <p class="text-gray-600">NIK<br>Surabaya</p>
+                    <h2 class="text-xl font-semibold mt-4">{{ $wali->nama }}</h2> <!-- Menampilkan nama dari database -->
+                    <p class="text-gray-600">{{ $wali->nik }}<br>Surabaya</p> <!-- Menampilkan NIK -->
                 </div>
 
                 <nav>
@@ -36,36 +36,40 @@
 
             <div class="flex-1 p-8 bg-gray-100">
                 <h2 class="text-2xl font-semibold mb-6">Profil Wali</h2>
-                <div class="space-y-4">
-                    <div>
-                        <label class="font-bold" for="name">Nama:</label>
-                        <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Nama">
+                <form method="POST" action="{{ route('profil.wali.update') }}">
+                    @csrf
+                    <div class="space-y-4">
+                        <div>
+                            <label class="font-bold" for="name">Nama:</label>
+                            <input type="text" id="name" name="nama" value="{{ $wali->nama }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Nama">
+                        </div>
+                        <div>
+                            <label class="font-bold" for="email">Email:</label>
+                            <input type="email" id="email" name="email" value="{{ $wali->email }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Email">
+                        </div>
+                        <div>
+                            <label class="font-bold" for="address">Alamat:</label>
+                            <input type="text" id="address" name="alamat" value="{{ $wali->alamat }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Alamat">
+                        </div>
+                        <div>
+                            <label class="font-bold" for="gender">Jenis Kelamin:</label>
+                            <select id="gender" name="jenis_kelamin" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300">
+                                <option value="" disabled>Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki" {{ $wali->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                <option value="Perempuan" {{ $wali->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold" for="nik">NIK:</label>
+                            <input type="text" id="nik" name="nik" value="{{ $wali->nik }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan NIK">
+                        </div>
+                        <div>
+                            <label class="font-bold" for="phone">Nomor Telepon:</label>
+                            <input type="text" id="phone" name="no_telpon" value="{{ $wali->no_telpon }}" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Nomor Telepon">
+                        </div>
                     </div>
-                    <div>
-                        <label class="font-bold" for="email">Email:</label>
-                        <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Email">
-                    </div>
-                    <div>
-                        <label class="font-bold" for="address">Alamat:</label>
-                        <input type="text" id="address" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Alamat">
-                    </div>
-                    <div>
-                        <label class="font-bold" for="gender">Jenis Kelamin:</label>
-                        <select id="gender" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300">
-                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="font-bold" for="nik">NIK:</label>
-                        <input type="text" id="nik" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan NIK">
-                    </div>
-                    <div>
-                        <label class="font-bold" for="phone">Nomor Telepon:</label>
-                        <input type="text" id="phone" class="w-full p-2 border border-gray-300 rounded transition duration-300 focus:ring focus:ring-yellow-300" placeholder="Masukkan Nomor Telepon">
-                    </div>
-                </div>
+                    <button type="submit" class="bg-yellow-500 text-white py-3 px-4 rounded hover:bg-yellow-600 transition-all w-full mt-4">Simpan</button>
+                </form>
             </div>
         </div>
     </div>

@@ -16,26 +16,31 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Validate the login request
+        // Validasi input login
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:8',
         ]);
 
-        // Find the account by email
+        // Cari akun berdasarkan email
         $user = User::where('email', $request->email)->first();
 
-        // Check if user exists and the password is correct
+        // Cek apakah user ditemukan dan password cocok
         if ($user && Hash::check($request->password, $user->password_akun)) {
-            // Login the user
-            Auth::login($user);
+            // Login user
+            Auth::login($user); // Pastikan user benar-benar login
 
-            return redirect()->intended('/dashboard'); // Redirect to dashboard or intended page
+            // Cek role pengguna dan arahkan ke halaman yang sesuai
+            if (Auth::user()->role === 'nakes') {
+                return redirect()->intended('/dashboard-nakes'); // Redirect ke dashboard nakes
+            }
+
+            return redirect()->intended('/dashboard'); // Redirect ke dashboard wali
         }
 
-        // If authentication fails
+        // Jika login gagal, kembalikan dengan pesan error
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email atau password tidak sesuai.',
         ])->withInput();
     }
 

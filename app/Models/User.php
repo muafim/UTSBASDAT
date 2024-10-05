@@ -23,6 +23,7 @@ class User extends Authenticatable
         'tanggal_lahir',   // Tambahkan tanggal lahir ke fillable
         'jenis_kelamin',   // Tambahkan jenis kelamin ke fillable
         'alamat',          // Tambahkan alamat ke fillable
+        'role',
     ];
 
     protected $hidden = [

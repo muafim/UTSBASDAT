@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->text('alamat');
+            $table->string('role')->default('wali'); // Kolom role ditambahkan dengan default 'wali'
             $table->timestamps();
         });
 

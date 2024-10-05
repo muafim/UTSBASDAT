@@ -68,9 +68,11 @@ Auth::routes();
 Route::get('/register', [RegistrasiController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegistrasiController::class, 'register']);
 
+// Halaman login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 
 
